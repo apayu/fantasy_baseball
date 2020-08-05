@@ -4,14 +4,22 @@
 // that code so it'll be compiled.
 
 require("@rails/ujs").start()
-require("turbolinks").start()
+// require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
 
+import React from 'react'
+import ReactDOM from 'react-dom'
 import '@coreui/coreui';
 import "@coreui/coreui/scss/coreui";
+import Dashboard from './dashboard';
 
-
+document.addEventListener('DOMContentLoaded', () => {
+  ReactDOM.render(
+    <Dashboard />,
+    document.querySelector('#myReact'),
+  )
+})
 // Uncomment to copy all static images under ../images to the output folder and reference
 // them with the image_pack_tag helper in views (e.g <%= image_pack_tag 'rails.png' %>)
 // or the `imagePath` JavaScript helper below.
