@@ -5,14 +5,12 @@ require:
 AllCops:
   TargetRubyVersion: 2.6.6
   DisplayCopNames: true
-  EnabledByDefault: true
   Exclude:
     - bin/*
     - vendor/ruby/**/*
     - node_modules/**/*
     - db/schema.rb
     - .licenses/**/*
-    - config/**/*
 Rails:
   Enabled: true
 Rails/UnknownEnv:
