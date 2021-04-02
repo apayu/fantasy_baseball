@@ -33,7 +33,7 @@ Metrics/BlockLength:
     - config/routes.rb
     - lib/tasks/**/*
     - spec/**/*
-    - app/admin/**/*
+    - db/migrate/*
 Lint/RaiseException:
   Enabled: true
 Lint/StructNewOverride:
