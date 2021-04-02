@@ -2,7 +2,7 @@
 
 namespace :mlb_team do
   task update: :environment do
-    mlb_teams = MlbData::MlbDataApi.team_info['team_all_season']['queryResults']['row']
+    mlb_teams = MlbData::Api.team_info
 
     mlb_teams.each do |team|
       MlbTeam.find_or_create_by(tricode: team['name_abbrev']) do |baseball_team|
