@@ -12,6 +12,15 @@
   </head>
 
   <body>
-    <%= yield %>
+    <div>
+      <%= render '/shared/header' %>
+      <main>
+        <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+          <!-- Replace with your content -->
+          <%= yield %>
+          <!-- /End replace -->
+        </div>
+      </main>
+    </div>
   </body>
 </html>
