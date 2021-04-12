@@ -15,4 +15,5 @@
 #  cpbl_player_id    :string           default(""), not null
 #
 class CpblPlayer < ApplicationRecord
+  include Player
 end
