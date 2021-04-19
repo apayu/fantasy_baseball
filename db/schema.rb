@@ -10,14 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_12_153552) do
+ActiveRecord::Schema.define(version: 2021_04_07_145209) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "baseball_hitting_stats", force: :cascade do |t|
+    t.integer "year", null: false
     t.integer "g"
     t.integer "ab"
+    t.integer "pa"
     t.integer "r"
     t.integer "h"
     t.integer "d"
@@ -28,6 +30,8 @@ ActiveRecord::Schema.define(version: 2021_04_12_153552) do
     t.integer "tb"
     t.integer "so"
     t.integer "bb"
+    t.integer "ibb"
+    t.integer "hbp"
     t.integer "lob"
     t.integer "xbh"
     t.integer "ao"
@@ -37,47 +41,61 @@ ActiveRecord::Schema.define(version: 2021_04_12_153552) do
     t.integer "sf"
     t.integer "sac"
     t.integer "cs"
-    t.integer "hbp"
-    t.integer "ibb"
     t.integer "roe"
-    t.integer "tpa"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
     t.string "player_type"
     t.bigint "player_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["player_id", "year"], name: "index_baseball_hitting_stats_on_player_id_and_year"
     t.index ["player_type", "player_id"], name: "index_baseball_hitting_stats_on_player"
   end
 
   create_table "baseball_pitching_stats", force: :cascade do |t|
+    t.integer "year", null: false
     t.integer "g"
-    t.integer "gs"
     t.float "ip"
+    t.integer "gs"
+    t.integer "gr"
+    t.integer "cg"
+    t.integer "sho"
+    t.integer "nbb"
+    t.integer "bf"
+    t.integer "np"
+    t.integer "h"
     t.integer "r"
     t.integer "er"
     t.integer "hr"
     t.integer "bb"
+    t.integer "ibb"
     t.integer "so"
+    t.integer "hbp"
     t.integer "w"
     t.integer "l"
     t.integer "sv"
+    t.integer "bs"
     t.integer "hld"
     t.integer "qs"
     t.integer "gidp"
     t.integer "gidp_opp"
-    t.integer "hb"
-    t.integer "ibb"
-    t.bigint "mlb_players_id"
+    t.integer "wp"
+    t.integer "bk"
+    t.integer "go"
+    t.integer "ao"
+    t.string "player_type"
+    t.bigint "player_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["mlb_players_id"], name: "index_baseball_pitching_stats_on_mlb_players_id"
+    t.index ["player_id", "year"], name: "index_baseball_pitching_stats_on_player_id_and_year"
+    t.index ["player_type", "player_id"], name: "index_baseball_pitching_stats_on_player"
   end
 
   create_table "cpbl_players", force: :cascade do |t|
     t.string "cpbl_player_id", default: "", null: false
+    t.integer "number", null: false
     t.string "name", default: "", null: false
     t.string "throws", default: "", null: false
     t.string "bats", default: "", null: false
-    t.string "status", default: "", null: false
+    t.integer "status", default: 0, null: false
     t.string "primary_stat_type", default: "", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -104,5 +122,4 @@ ActiveRecord::Schema.define(version: 2021_04_12_153552) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  add_foreign_key "baseball_pitching_stats", "mlb_players", column: "mlb_players_id"
 end
