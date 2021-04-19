@@ -2,6 +2,7 @@
 
 class PlayersController < ApplicationController
   def index
-    @cpbl_player = CpblPlayer.all
+    @cpbl_batter = CpblPlayer.where(primary_stat_type: 'batting')
+    @cpbl_pitcher = CpblPlayer.where(primary_stat_type: 'pitching')
   end
 end
