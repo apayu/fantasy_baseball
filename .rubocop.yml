@@ -27,6 +27,7 @@ Metrics:
     - config/**/*
     - spec/**/*
     - lib/tasks/**/*
+    - db/seeds.rb
 Metrics/BlockLength:
   Exclude:
     - config/environments/*

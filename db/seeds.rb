@@ -1,12 +1,15 @@
 # frozen_string_literal: true
 
-if Rails.env.development?
+def create_hitter
+  team = CpblTeam.create(city: '桃園', full_name: 'Lamigo', tricode: '')
   hitter = CpblPlayer.create(number: 52,
                              name: '陳金鋒',
                              primary_stat_type: 'batting',
                              bats: 'R',
                              throws: 'R',
                              status: 0)
+
+  CpblTeamPlayer.create(cpbl_team: team, cpbl_player: hitter)
 
   BaseballHittingStat.create(year: 2016,
                              g: 91,
@@ -29,6 +32,10 @@ if Rails.env.development?
                              gidp: 8,
                              sf: 5, sac: 0, cs: 1,
                              player: hitter)
+end
+
+def create_pitcher
+  team = CpblTeam.create(city: '台南', full_name: '統一7-ELEVEn', tricode: '')
 
   pitcher = CpblPlayer.create(number: 18,
                               name: '潘威倫',
@@ -36,6 +43,8 @@ if Rails.env.development?
                               bats: 'R',
                               throws: 'R',
                               status: 0)
+
+  CpblTeamPlayer.create(cpbl_team: team, cpbl_player: pitcher)
 
   BaseballPitchingStat.create(year: 2016,
                               g: 13,
@@ -65,4 +74,11 @@ if Rails.env.development?
                               go: 67,
                               ao: 63,
                               player: pitcher)
+end
+
+if Rails.env.development?
+  if CpblPlayer.count.zero?
+    create_hitter
+    create_pitcher
+  end
 end
