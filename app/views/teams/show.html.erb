@@ -1,0 +1,3 @@
+<% @cpbl_team.cpbl_players.each do |player| %>
+  <%= link_to player.name, player_path(player.id)  %>
+<% end %>
