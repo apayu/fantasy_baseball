@@ -1,1 +1,5 @@
-<%= @cpbl_player.name %>
+<% if @cpbl_player.first.primary_stat_type == 'batting' %>
+  <%= render 'players/shared/hitter_table', cpbl_hitter: @cpbl_player %>
+<% else %>
+  <%= render 'players/shared/pitcher_table', cpbl_pitcher: @cpbl_player %>
+<% end %>

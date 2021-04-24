@@ -1,0 +1,44 @@
+<table class="border-collapse border border-green-800">
+  <thead>
+    <tr>
+      <th class="border border-green-600 ">姓名</th>
+      <th class="border border-green-600 ">G</th>
+      <th class="border border-green-600 ">AVG</th>
+      <th class="border border-green-600 ">OBP</th>
+      <th class="border border-green-600 ">SLG</th>
+      <th class="border border-green-600 ">OPS</th>
+      <th class="border border-green-600 ">AB</th>
+      <th class="border border-green-600 ">R</th>
+      <th class="border border-green-600 ">H</th>
+      <th class="border border-green-600 ">2B</th>
+      <th class="border border-green-600 ">3B</th>
+      <th class="border border-green-600 ">HR</th>
+      <th class="border border-green-600 ">RBI</th>
+      <th class="border border-green-600 ">BB</th>
+      <th class="border border-green-600 ">K</th>
+      <th class="border border-green-600 ">SB</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% cpbl_hitter.each do |player| %>
+      <tr>
+        <td class="border border-green-600"><%= player.name %></td>
+        <td class="border border-green-600"><%= player.batting_stat_g %></td>
+        <td class="border border-green-600"><%= player.batting_stat_avg %></td>
+        <td class="border border-green-600"><%= player.batting_stat_obp %></td>
+        <td class="border border-green-600"><%= player.batting_stat_slg %></td>
+        <td class="border border-green-600"><%= player.batting_stat_ops %></td>
+        <td class="border border-green-600"><%= player.batting_stat_ab %></td>
+        <td class="border border-green-600"><%= player.batting_stat_r %></td>
+        <td class="border border-green-600"><%= player.batting_stat_h %></td>
+        <td class="border border-green-600"><%= player.batting_stat_d %></td>
+        <td class="border border-green-600"><%= player.batting_stat_t %></td>
+        <td class="border border-green-600"><%= player.batting_stat_hr %></td>
+        <td class="border border-green-600"><%= player.batting_stat_rbi %></td>
+        <td class="border border-green-600"><%= player.batting_stat_bb %></td>
+        <td class="border border-green-600"><%= player.batting_stat_so %></td>
+        <td class="border border-green-600"><%= player.batting_stat_sb %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
