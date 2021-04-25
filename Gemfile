@@ -28,6 +28,7 @@ gem 'jbuilder', '~> 2.7'
 # gem 'mini_magick', '~> 4.8'
 
 # Utils
+gem 'httparty'
 gem 'rails-i18n', '~> 6.0.0'
 
 # Reduces boot times through caching; required in config/boot.rb
