@@ -5,7 +5,7 @@ namespace :cpbl_team_roster do
     cpbl_teams = CpblTeam.all
 
     cpbl_teams.each do |team|
-      roster = Scraper::Cpbl.new.players(team.tricode)
+      roster = Scraper::Cpbl.new.team_roster(team.tricode)
 
       puts '============================================'
       puts "#{team.full_name}: "
@@ -18,7 +18,7 @@ namespace :cpbl_team_roster do
           p.status = player[:status].to_i
         end
 
-        CpblTeamPlayer.create(cpbl_team: team, cpbl_player: cpbl_player)
+        CpblTeamPlayer.find_or_create_by(cpbl_team: team, cpbl_player: cpbl_player)
 
         puts "#{player[:name]} is already update!"
       end

@@ -5,46 +5,59 @@ module Scraper
     HOST = 'www.cpbl.com.tw'
 
     ENDPOINTS = {
-      team_players: '/players.html'
+      teams: '/',
+      team_roster: '/players.html',
+      player_stats: '/players/person.html'
     }.freeze
 
     def teams
-      team_list.map do |team_url|
+      team_list.map do |team|
         {
-          code: params(team_url['href'])['team'].first,
-          full_name: team_url.text
+          code: params(team['href'])['team'].first,
+          full_name: team.text
         }
       end
     end
 
-    def players(team_code)
+    def team_roster(team_code)
       offset = 0
-      player_list = team_players(offset, 1, team_code)
+      players = player_list(offset, 1, team_code)
       players_array = []
 
-      while player_list.count != 0
+      while players.count != 0
 
-        players_array << players_info(player_list)
+        players_array << players_info(players)
 
         offset += 20
-        player_list = team_players(offset, 1, team_code)
+        players = player_list(offset, 1, team_code)
       end
 
       players_array.flatten
     end
 
+    # TODO: refactor
+    # rubocop:disable Metrics/AbcSize
+    def stats(year, player_id, team_code)
+      query = "player_id=#{player_id}&teamno=#{team_code}"
+      each_year_stats = parsed_html(ENDPOINTS[:player_stats], query).at("th:contains('YEAR')").parent.parent
+      stats_item = each_year_stats.search('th')
+
+      player_stats_of_year = each_year_stats.at("td:contains('#{year}')")
+
+      return nil if player_stats_of_year.nil?
+
+      player_stats = player_stats_of_year.parent.search('td')
+
+      stats_item.map.with_index do |stat, index|
+        { stat.text.downcase.to_sym => player_stats[index].text.strip }
+      end
+    end
+    # rubocop:enable Metrics/AbcSize
+
     private
 
-    def teams_code_url
-      uri_str = URI::HTTP.build(
-        host: HOST
-      ).to_s
-
-      URI.parse(uri_str)
-    end
-
-    def players_info(player_list)
-      player_list.map do |player|
+    def players_info(players)
+      players.map do |player|
         {
           player_id: params(player.search('a')[1]['href'])['player_id'].first,
           name: player.search('a')[1].text,
@@ -62,15 +75,13 @@ module Scraper
       player.search('td').last.text == '投手' ? 'pitching' : 'batting'
     end
 
-    def team_players(offset, status, team_code)
-      team_players_url = URI::HTTP.build(
-        host: HOST,
-        path: ENDPOINTS[:team_players],
-        query: "offset=#{offset}&status=#{status}&teamno=#{team_code}"
-      ).to_s
-      uri = URI.parse(team_players_url)
-      unparse_page = HTTParty.get(uri)
-      Nokogiri::HTML(unparse_page).search('table tr:not(:first-child)')
+    def player_list(offset, status, team_code)
+      query = "offset=#{offset}&status=#{status}&teamno=#{team_code}"
+      parsed_html(ENDPOINTS[:team_roster], query).search('table tr:not(:first-child)')
+    end
+
+    def team_list
+      parsed_html(ENDPOINTS[:teams], '').css('#menu-submenu2').search('li:not(:first-child) a')
     end
 
     def params(url)
@@ -78,9 +89,15 @@ module Scraper
       CGI.parse(uri.query)
     end
 
-    def team_list
-      unparse_page = HTTParty.get(teams_code_url)
-      Nokogiri::HTML(unparse_page).css('#menu-submenu2').search('li:not(:first-child) a')
+    def parsed_html(endpoint, query)
+      uri = URI::HTTP.build(
+        host: HOST,
+        path: endpoint,
+        query: query
+      ).to_s
+
+      response = HTTParty.get(URI.parse(uri))
+      Nokogiri::HTML(response.body)
     end
   end
 end

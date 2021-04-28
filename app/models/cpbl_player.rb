@@ -24,4 +24,16 @@ class CpblPlayer < ApplicationRecord
            :rbi, :bb, :so, :sb, to: :baseball_hitting_stat, prefix: :batting_stat
   delegate :g, :gs, :w, :l, :sv, :bs, :hld, :cg, :sho, :ip, :h,
            :r, :er, :hr, :bb, :so, :era, :whip, to: :baseball_pitching_stat, prefix: :pitching_stat
+
+  def pitcher?
+    primary_stat_type == 'pitching'
+  end
+
+  def pitcher_stats_is_empty?
+    baseball_pitching_stat.nil?
+  end
+
+  def batter_stats_is_empty?
+    baseball_hitting_stat.nil?
+  end
 end
