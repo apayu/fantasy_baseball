@@ -21,9 +21,10 @@ class CpblPlayer < ApplicationRecord
   has_many :cpbl_teams, through: :cpbl_team_players
 
   delegate :g, :avg, :obp, :slg, :ops, :ab, :r, :h, :d, :t, :hr,
-           :rbi, :bb, :so, :sb, to: :baseball_hitting_stat, prefix: :batting_stat
+           :rbi, :bb, :so, :sb, to: :baseball_hitting_stat, prefix: :batting_stat, allow_nil: true
+
   delegate :g, :gs, :w, :l, :sv, :bs, :hld, :cg, :sho, :ip, :h,
-           :r, :er, :hr, :bb, :so, :era, :whip, to: :baseball_pitching_stat, prefix: :pitching_stat
+           :r, :er, :hr, :bb, :so, :era, :whip, to: :baseball_pitching_stat, prefix: :pitching_stat, allow_nil: true
 
   def pitcher?
     primary_stat_type == 'pitching'

@@ -41,6 +41,30 @@ namespace :cpbl_player_stats do
           p.go = player_stats[:go]
           p.ao = player_stats[:ao]
         end
+      elsif !player.pitcher? && !player_stats.nil?
+        BaseballHittingStat.find_or_create_by(year: year, player: player) do |p|
+          p.g = player_stats[:g]
+          p.ab = player_stats[:ab]
+          p.pa = player_stats[:pa]
+          p.r = player_stats[:r]
+          p.h = player_stats[:h]
+          p.d = player_stats[:d]
+          p.t = player_stats[:t]
+          p.hr = player_stats[:hr]
+          p.rbi = player_stats[:rbi]
+          p.sb = player_stats[:sb]
+          p.tb = player_stats[:tb]
+          p.so = player_stats[:so]
+          p.bb = player_stats[:bb]
+          p.ibb = player_stats[:ibb]
+          p.hbp = player_stats[:hbp]
+          p.ao = player_stats[:ao]
+          p.go = player_stats[:go]
+          p.gidp = player_stats[:gidp]
+          p.sf = player_stats[:sf]
+          p.sac = player_stats[:sac]
+          p.cs = player_stats[:cs]
+        end
       end
 
       puts "#{player[:name]} is already update!"
