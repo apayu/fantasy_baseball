@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_30_083943) do
+ActiveRecord::Schema.define(version: 2021_05_01_060539) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -87,6 +87,53 @@ ActiveRecord::Schema.define(version: 2021_04_30_083943) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["player_id", "year"], name: "index_baseball_pitching_stats_on_player_id_and_year"
     t.index ["player_type", "player_id"], name: "index_baseball_pitching_stats_on_player"
+  end
+
+  create_table "cpbl_hitting_game_logs", force: :cascade do |t|
+    t.bigint "cpbl_player_id"
+    t.bigint "cpbl_schedule_id"
+    t.integer "ab"
+    t.integer "r"
+    t.integer "h"
+    t.integer "rbi"
+    t.integer "d"
+    t.integer "t"
+    t.integer "hr"
+    t.integer "gidp"
+    t.integer "bb"
+    t.integer "hbp"
+    t.integer "so"
+    t.integer "sac"
+    t.integer "sf"
+    t.integer "sb"
+    t.integer "cs"
+    t.integer "e"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["cpbl_player_id"], name: "index_cpbl_hitting_game_logs_on_cpbl_player_id"
+    t.index ["cpbl_schedule_id"], name: "index_cpbl_hitting_game_logs_on_cpbl_schedule_id"
+  end
+
+  create_table "cpbl_pitching_game_logs", force: :cascade do |t|
+    t.bigint "cpbl_player_id"
+    t.bigint "cpbl_schedule_id"
+    t.float "ip"
+    t.integer "bf"
+    t.integer "np"
+    t.integer "s"
+    t.integer "h"
+    t.integer "hr"
+    t.integer "bb"
+    t.integer "hbp"
+    t.integer "so"
+    t.integer "wp"
+    t.integer "bk"
+    t.integer "r"
+    t.integer "er"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["cpbl_player_id"], name: "index_cpbl_pitching_game_logs_on_cpbl_player_id"
+    t.index ["cpbl_schedule_id"], name: "index_cpbl_pitching_game_logs_on_cpbl_schedule_id"
   end
 
   create_table "cpbl_players", force: :cascade do |t|

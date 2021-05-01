@@ -19,6 +19,8 @@ class CpblPlayer < ApplicationRecord
   include Player
   has_many :cpbl_team_players, dependent: :restrict_with_error
   has_many :cpbl_teams, through: :cpbl_team_players
+  has_many :cpbl_hitting_game_logs, dependent: :restrict_with_error
+  has_many :cpbl_pitching_game_logs, dependent: :restrict_with_error
 
   delegate :g, :avg, :obp, :slg, :ops, :ab, :r, :h, :d, :t, :hr,
            :rbi, :bb, :so, :sb, to: :baseball_hitting_stat, prefix: :batting_stat, allow_nil: true
