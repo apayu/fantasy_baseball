@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 module Scraper
+  # rubocop:disable all
+  # TODO: refactor
   class Cpbl
     HOST = 'www.cpbl.com.tw'
 
@@ -8,7 +10,8 @@ module Scraper
       teams: '/',
       team_roster: '/players.html',
       player_stats: '/players/person.html',
-      schedule: '/schedule/index'
+      schedule: '/schedule/index',
+      game_log: '/games/box.html'
     }.freeze
 
     def teams
@@ -36,8 +39,6 @@ module Scraper
       players_array.flatten
     end
 
-    # TODO: refactor
-    # rubocop:disable Metrics/AbcSize
     def stats(year, player_id, team_code)
       query = "player_id=#{player_id}&teamno=#{team_code}"
       each_year_stats = parsed_html(ENDPOINTS[:player_stats], query).at("th:contains('YEAR')").parent.parent
@@ -54,8 +55,6 @@ module Scraper
       end
     end
 
-    # rubocop:disable Metrics/MethodLength
-    # TODO: refactor
     def schedule(year, month)
       query = "date=#{year}-#{month}-01&gameno=01&sfieldsub=&sgameno=01"
       schedule_by_month = parsed_html("#{ENDPOINTS[:schedule]}/#{year}-#{month}-01.html", query)
@@ -76,8 +75,68 @@ module Scraper
         end
       end
     end
-    # rubocop:enable Metrics/MethodLength
-    # rubocop:enable Metrics/AbcSize
+
+    def game_log(game_id, match_date, year)
+      query = "game_type=01&game_id=#{game_id}&game_date=#{match_date}&date=#{match_date}&pbyear=#{year}"
+      game_log = parsed_html(ENDPOINTS[:game_log], query)
+      players_stats = []
+      th_stat_items = game_log.search('div#box_pop_guest').search('th')
+      tr_guest = game_log.search('div#box_pop_guest').search('tr:not(:first-child):not(:last-child)')
+      tr_host = game_log.search('div#box_pop_host').search('tr:not(:first-child):not(:last-child)')
+      th_p_stat_items = game_log.search('div#box_pop_pitcher_guest').search('th')
+      tr_p_guest = game_log.search('div#box_pop_pitcher_guest').search('tr:not(:first-child):not(:last-child)')
+      tr_p_host = game_log.search('div#box_pop_pitcher_host').search('tr:not(:first-child):not(:last-child)')
+
+      a = tr_guest.map do |player|
+        stats = player.search('td')
+        th_stat_items.each_with_index.map do |item, index|
+          if index == 0
+            cpbl_player_id = params(stats[index].search('a').attr('href').value)["player_id"].first
+            { cpbl_player_id: cpbl_player_id }
+          else
+            { item.text.downcase.to_sym => stats[index].text }
+          end
+        end.reduce({}, :merge)
+      end
+
+      b = tr_host.map do |player|
+        stats = player.search('td')
+        th_stat_items.each_with_index.map do |item, index|
+          if index == 0
+            cpbl_player_id = params(stats[index].search('a').attr('href').value)["player_id"].first
+            { cpbl_player_id: cpbl_player_id }
+          else
+            { item.text.downcase.to_sym => stats[index].text }
+          end
+        end.reduce({}, :merge)
+      end
+
+      c = tr_p_guest.map do |player|
+        stats = player.search('td')
+        th_p_stat_items.each_with_index.map do |item, index|
+          if index == 0
+            cpbl_player_id = params(stats[index].search('a').attr('href').value)["player_id"].first
+            { cpbl_player_id: cpbl_player_id }
+          else
+            { item.text.downcase.to_sym => stats[index].text }
+          end
+        end.reduce({}, :merge)
+      end
+
+      d = tr_p_host.map do |player|
+        stats = player.search('td')
+        th_p_stat_items.each_with_index.map do |item, index|
+          if index == 0
+            cpbl_player_id = params(stats[index].search('a').attr('href').value)["player_id"].first
+            { cpbl_player_id: cpbl_player_id }
+          else
+            { item.text.downcase.to_sym => stats[index].text }
+          end
+        end.reduce({}, :merge)
+      end
+
+      [a, b, c, d]
+    end
 
     private
 
@@ -125,4 +184,5 @@ module Scraper
       Nokogiri::HTML(response.body)
     end
   end
+  # rubocop:enable all
 end
