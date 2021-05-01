@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_22_152937) do
+ActiveRecord::Schema.define(version: 2021_04_30_083943) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -101,6 +101,20 @@ ActiveRecord::Schema.define(version: 2021_04_22_152937) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "cpbl_schedules", force: :cascade do |t|
+    t.bigint "home_team_id"
+    t.bigint "away_team_id"
+    t.string "location"
+    t.string "game_id"
+    t.string "home_score"
+    t.string "away_score"
+    t.string "match_date"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["away_team_id"], name: "index_cpbl_schedules_on_away_team_id"
+    t.index ["home_team_id"], name: "index_cpbl_schedules_on_home_team_id"
+  end
+
   create_table "cpbl_team_players", force: :cascade do |t|
     t.bigint "cpbl_player_id"
     t.bigint "cpbl_team_id"
@@ -139,4 +153,6 @@ ActiveRecord::Schema.define(version: 2021_04_22_152937) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "cpbl_schedules", "cpbl_teams", column: "away_team_id"
+  add_foreign_key "cpbl_schedules", "cpbl_teams", column: "home_team_id"
 end

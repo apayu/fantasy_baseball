@@ -14,4 +14,5 @@
 class CpblTeam < ApplicationRecord
   has_many :cpbl_team_players, dependent: :restrict_with_error
   has_many :cpbl_players, through: :cpbl_team_players
+  has_many :cpbl_schedules, dependent: :restrict_with_error
 end
