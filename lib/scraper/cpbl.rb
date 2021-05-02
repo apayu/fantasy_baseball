@@ -4,6 +4,8 @@ module Scraper
   # rubocop:disable all
   # TODO: refactor
   class Cpbl
+    attr_accessor :player_stats_page
+
     HOST = 'www.cpbl.com.tw'
 
     ENDPOINTS = {
@@ -39,9 +41,33 @@ module Scraper
       players_array.flatten
     end
 
-    def stats(year, player_id, team_code)
-      query = "player_id=#{player_id}&teamno=#{team_code}"
-      each_year_stats = parsed_html(ENDPOINTS[:player_stats], query).at("th:contains('YEAR')").parent.parent
+    def hitting_stats(year, player_id, team_code)
+      result = get_player_stats_page(year, player_id, team_code).at("th:contains('AVG')")
+
+      return nil if result.nil?
+
+      each_year_stats = result .parent.parent
+
+      stats_item = each_year_stats.search('th')
+
+      player_stats_of_year = each_year_stats.at("td:contains('#{year}')")
+
+      return nil if player_stats_of_year.nil?
+
+      player_stats = player_stats_of_year.parent.search('td')
+
+      stats_item.map.with_index do |stat, index|
+        { stat.text.downcase.to_sym => player_stats[index].text.strip }
+      end
+    end
+
+    def pitching_stats(year, player_id, team_code)
+      result = get_player_stats_page(year, player_id, team_code).at("th:contains('ERA')")
+
+      return nil if result.nil?
+
+      each_year_stats = result .parent.parent
+
       stats_item = each_year_stats.search('th')
 
       player_stats_of_year = each_year_stats.at("td:contains('#{year}')")
@@ -139,6 +165,11 @@ module Scraper
     end
 
     private
+
+    def get_player_stats_page(year, player_id, team_code)
+      query = "player_id=#{player_id}&teamno=#{team_code}"
+      @player_stats_page ||= parsed_html(ENDPOINTS[:player_stats], query)
+    end
 
     def players_info(players)
       players.map do |player|
