@@ -4,8 +4,8 @@ class PlayersController < ApplicationController
   before_action :find_player, only: [:show]
 
   def index
-    @cpbl_hitter = CpblPlayer.where(primary_stat_type: 'batting')
-    @cpbl_pitcher = CpblPlayer.where(primary_stat_type: 'pitching')
+    @cpbl_hitter = CpblPlayer.includes(%i[baseball_hitting_stat cpbl_teams]).where(primary_stat_type: 'batting')
+    @cpbl_pitcher = CpblPlayer.includes(%i[baseball_pitching_stat cpbl_teams]).where(primary_stat_type: 'pitching')
   end
 
   def show; end
