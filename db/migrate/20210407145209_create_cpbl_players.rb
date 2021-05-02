@@ -4,6 +4,7 @@ class CreateCpblPlayers < ActiveRecord::Migration[6.1]
   def change
     create_table :cpbl_players do |t|
       t.string :cpbl_player_id, null: false, default: ''
+      t.references :primary_position, index: true, foreign_key: { to_table: :baseball_positions }
       t.integer :number, null: false
       t.string :name, null: false, default: ''
       t.string :throws, null: false, default: ''
