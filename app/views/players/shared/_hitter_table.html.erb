@@ -2,6 +2,8 @@
   <thead>
     <tr>
       <th class="bg-blue-500 text-white">姓名</th>
+      <th class="bg-blue-500 text-white">隊伍</th>
+      <th class="bg-blue-500 text-white">位置</th>
       <th class="bg-blue-500 text-white">G</th>
       <th class="bg-blue-500 text-white">AVG</th>
       <th class="bg-blue-500 text-white">OBP</th>
@@ -23,6 +25,8 @@
     <% cpbl_hitter.each_with_index do |player, index| %>
       <tr class=<%= "#{index.even? ? 'bg-blue-100' : 'bg-blue-50'}" %>>
         <td><%= player.name %></td>
+        <td><%= player.cpbl_teams.last.full_name %></td>
+        <td><%= player.primary_position.code.upcase %></td>
         <td><%= player.batting_stat_g %></td>
         <td><%= player.batting_stat_avg %></td>
         <td><%= player.batting_stat_obp %></td>
