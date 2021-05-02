@@ -9,7 +9,7 @@ module Scraper
     HOST = 'www.cpbl.com.tw'
 
     ENDPOINTS = {
-      teams: '/',
+      teams: '/players.html',
       team_roster: '/players.html',
       player_stats: '/players/person.html',
       schedule: '/schedule/index',
@@ -19,7 +19,7 @@ module Scraper
     def teams
       team_list.map do |team|
         {
-          code: params(team['href'])['team'].first,
+          code: team.attr('value'),
           full_name: team.text
         }
       end
@@ -197,7 +197,7 @@ module Scraper
     end
 
     def team_list
-      parsed_html(ENDPOINTS[:teams], '').css('#menu-submenu2').search('li:not(:first-child) a')
+      parsed_html(ENDPOINTS[:teams], '').css('select.select_longer').search('option:not(:first-child)')
     end
 
     def params(url)

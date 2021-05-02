@@ -18,7 +18,7 @@ class CpblTeam < ApplicationRecord
 
   ABBR_NAME = { E02: '中信', L01: '統一', AJL011: '樂天', B04: '富邦', D01: '味全' }.freeze
 
-  def full_name
+  def attr_name
     ABBR_NAME[tricode.to_sym]
   end
 end

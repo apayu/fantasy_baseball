@@ -25,7 +25,7 @@
     <% cpbl_hitter.each_with_index do |player, index| %>
       <tr class=<%= "#{index.even? ? 'bg-blue-100' : 'bg-blue-50'}" %>>
         <td><%= player.name %></td>
-        <td><%= player.cpbl_teams.last.full_name %></td>
+        <td><%= player.cpbl_teams.last.attr_name %></td>
         <td><%= player.primary_position.code.upcase %></td>
         <td><%= player.batting_stat_g %></td>
         <td><%= player.batting_stat_avg %></td>
