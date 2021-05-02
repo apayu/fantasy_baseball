@@ -1,0 +1,50 @@
+-
+  id: 1
+  code: 'p'
+  en_name: 'pitcher'
+  tw_name: '投手'
+-
+  id: 2
+  code: 'c'
+  en_name: 'catcher'
+  tw_name: '捕手'
+-
+  id: 3
+  code: '1b'
+  en_name: '1st baseman'
+  tw_name: '捕手'
+-
+  id: 4
+  code: '2b'
+  en_name: '2st baseman'
+  tw_name: '二壘手'
+-
+  id: 5
+  code: '3b'
+  en_name: '3st baseman'
+  tw_name: '三壘手'
+-
+  id: 6
+  code: 'ss'
+  en_name: 'short stop'
+  tw_name: '游擊手'
+-
+  id: 7
+  code: 'lf'
+  en_name: 'left fielder'
+  tw_name: '左外野手'
+-
+  id: 8
+  code: 'cf'
+  en_name: 'center fielder'
+  tw_name: '中外野手'
+-
+  id: 9
+  code: 'rf'
+  en_name: 'right fielder'
+  tw_name: '右外野手'
+-
+  id: 10
+  code: 'dh'
+  en_name: 'designated hitter'
+  tw_name: '指定打擊'

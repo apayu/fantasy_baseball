@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_01_060539) do
+ActiveRecord::Schema.define(version: 2021_05_02_005154) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -87,6 +87,14 @@ ActiveRecord::Schema.define(version: 2021_05_01_060539) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["player_id", "year"], name: "index_baseball_pitching_stats_on_player_id_and_year"
     t.index ["player_type", "player_id"], name: "index_baseball_pitching_stats_on_player"
+  end
+
+  create_table "baseball_positions", force: :cascade do |t|
+    t.string "code"
+    t.string "en_name"
+    t.string "tw_name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "cpbl_hitting_game_logs", force: :cascade do |t|
