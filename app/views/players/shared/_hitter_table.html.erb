@@ -25,23 +25,23 @@
     <% cpbl_hitter.each_with_index do |player, index| %>
       <tr class=<%= "#{index.even? ? 'bg-blue-100' : 'bg-blue-50'}" %>>
         <td><%= player.name %></td>
-        <td><%= player.cpbl_teams.last.attr_name %></td>
-        <td><%= player.primary_position.code.upcase %></td>
-        <td><%= player.batting_stat_g %></td>
-        <td><%= player.batting_stat_avg %></td>
-        <td><%= player.batting_stat_obp %></td>
-        <td><%= player.batting_stat_slg %></td>
-        <td><%= player.batting_stat_ops %></td>
-        <td><%= player.batting_stat_ab %></td>
-        <td><%= player.batting_stat_r %></td>
-        <td><%= player.batting_stat_h %></td>
-        <td><%= player.batting_stat_d %></td>
-        <td><%= player.batting_stat_t %></td>
-        <td><%= player.batting_stat_hr %></td>
-        <td><%= player.batting_stat_rbi %></td>
-        <td><%= player.batting_stat_bb %></td>
-        <td><%= player.batting_stat_so %></td>
-        <td><%= player.batting_stat_sb %></td>
+        <td><%= player.attr_team_name %></td>
+        <td><%= player.code.upcase %></td>
+        <td><%= player.g %></td>
+        <td><%= player.avg %></td>
+        <td><%= player.obp %></td>
+        <td><%= player.slg %></td>
+        <td><%= player.ops %></td>
+        <td><%= player.ab %></td>
+        <td><%= player.r %></td>
+        <td><%= player.h %></td>
+        <td><%= player.d %></td>
+        <td><%= player.t %></td>
+        <td><%= player.hr %></td>
+        <td><%= player.rbi %></td>
+        <td><%= player.bb %></td>
+        <td><%= player.so %></td>
+        <td><%= player.sb %></td>
       </tr>
     <% end %>
   </tbody>
