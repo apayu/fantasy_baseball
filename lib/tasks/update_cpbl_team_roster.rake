@@ -13,6 +13,7 @@ namespace :cpbl_team_roster do
       roster.each do |player|
         cpbl_player = CpblPlayer.find_or_create_by(cpbl_player_id: player[:player_id]) do |p|
           p.name = player[:name]
+          p.primary_position = BaseballPosition.find_by(tw_name: player[:primary_position])
           p.number = 0
           p.primary_stat_type = player[:primary_stat_type]
           p.status = player[:status].to_i

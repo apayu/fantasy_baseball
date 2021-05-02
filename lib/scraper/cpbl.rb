@@ -144,6 +144,7 @@ module Scraper
       players.map do |player|
         {
           player_id: params(player.search('a')[1]['href'])['player_id'].first,
+          primary_position: player.search('td').last.text,
           name: player.search('a')[1].text,
           status: player_status(player),
           primary_stat_type: player_primary_stat_type(player)
