@@ -84,10 +84,10 @@ module Scraper
     def schedule(year, month)
       query = "date=#{year}-#{month}-01&gameno=01&sfieldsub=&sgameno=01"
       schedule_by_month = parsed_html("#{ENDPOINTS[:schedule]}/#{year}-#{month}-01.html", query)
-      a = schedule_by_month.search('th.past')
-      b = schedule_by_month.search('td[valign="top"]')
+      day = schedule_by_month.search('th.past, th.today, th.future')
+      match_by_day = schedule_by_month.search('td[valign="top"]')
 
-      b.each_with_index.map do |val, index|
+      match_by_day.each_with_index.map do |val, index|
         next if val.search('div.one_block').empty?
 
         val.search('div.one_block').map do |match|
@@ -96,7 +96,7 @@ module Scraper
             away_team: match.search('table.schedule_team img')[0].attr('src').split('/')[-1].split('_')[0],
             locaiton: match.search('table.schedule_team td')[1].text,
             game_id: match.search('table.schedule_info')[0].search('th')[1].text,
-            game_date: "#{year}/#{month}/#{a[index].text}"
+            game_date: "#{year}/#{month}/#{day[index].text}"
           }
         end
       end
