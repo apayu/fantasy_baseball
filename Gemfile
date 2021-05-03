@@ -28,7 +28,13 @@ gem 'jbuilder', '~> 2.7'
 # gem 'mini_magick', '~> 4.8'
 
 # Utils
+gem 'httparty'
 gem 'rails-i18n', '~> 6.0.0'
+gem 'seedbank'
+
+# Active Record
+gem 'active_hash'
+gem 'activerecord-import', '~> 1.0', '>= 1.0.6'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false

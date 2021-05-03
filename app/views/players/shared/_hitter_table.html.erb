@@ -1,43 +1,47 @@
-<table class="border-collapse border border-green-800">
+<table class="border-separate border border-black table-auto mx-auto text-center w-9/12">
   <thead>
     <tr>
-      <th class="border border-green-600 ">姓名</th>
-      <th class="border border-green-600 ">G</th>
-      <th class="border border-green-600 ">AVG</th>
-      <th class="border border-green-600 ">OBP</th>
-      <th class="border border-green-600 ">SLG</th>
-      <th class="border border-green-600 ">OPS</th>
-      <th class="border border-green-600 ">AB</th>
-      <th class="border border-green-600 ">R</th>
-      <th class="border border-green-600 ">H</th>
-      <th class="border border-green-600 ">2B</th>
-      <th class="border border-green-600 ">3B</th>
-      <th class="border border-green-600 ">HR</th>
-      <th class="border border-green-600 ">RBI</th>
-      <th class="border border-green-600 ">BB</th>
-      <th class="border border-green-600 ">K</th>
-      <th class="border border-green-600 ">SB</th>
+      <th class="bg-blue-500 text-white">姓名</th>
+      <th class="bg-blue-500 text-white">隊伍</th>
+      <th class="bg-blue-500 text-white">位置</th>
+      <th class="bg-blue-500 text-white">G</th>
+      <th class="bg-blue-500 text-white">AVG</th>
+      <th class="bg-blue-500 text-white">OBP</th>
+      <th class="bg-blue-500 text-white">SLG</th>
+      <th class="bg-blue-500 text-white">OPS</th>
+      <th class="bg-blue-500 text-white">AB</th>
+      <th class="bg-blue-500 text-white">R</th>
+      <th class="bg-blue-500 text-white">H</th>
+      <th class="bg-blue-500 text-white">2B</th>
+      <th class="bg-blue-500 text-white">3B</th>
+      <th class="bg-blue-500 text-white">HR</th>
+      <th class="bg-blue-500 text-white">RBI</th>
+      <th class="bg-blue-500 text-white">BB</th>
+      <th class="bg-blue-500 text-white">K</th>
+      <th class="bg-blue-500 text-white">SB</th>
     </tr>
   </thead>
   <tbody>
-    <% cpbl_hitter.each do |player| %>
-      <tr>
-        <td class="border border-green-600"><%= player.name %></td>
-        <td class="border border-green-600"><%= player.batting_stat_g %></td>
-        <td class="border border-green-600"><%= player.batting_stat_avg %></td>
-        <td class="border border-green-600"><%= player.batting_stat_obp %></td>
-        <td class="border border-green-600"><%= player.batting_stat_slg %></td>
-        <td class="border border-green-600"><%= player.batting_stat_ops %></td>
-        <td class="border border-green-600"><%= player.batting_stat_ab %></td>
-        <td class="border border-green-600"><%= player.batting_stat_r %></td>
-        <td class="border border-green-600"><%= player.batting_stat_h %></td>
-        <td class="border border-green-600"><%= player.batting_stat_d %></td>
-        <td class="border border-green-600"><%= player.batting_stat_t %></td>
-        <td class="border border-green-600"><%= player.batting_stat_hr %></td>
-        <td class="border border-green-600"><%= player.batting_stat_rbi %></td>
-        <td class="border border-green-600"><%= player.batting_stat_bb %></td>
-        <td class="border border-green-600"><%= player.batting_stat_so %></td>
-        <td class="border border-green-600"><%= player.batting_stat_sb %></td>
+    <% cpbl_hitter.each_with_index do |player, index| %>
+      <tr class=<%= "#{index.even? ? 'bg-blue-100' : 'bg-blue-50'}" %>>
+        <td><%= player.name %></td>
+        <td><%= player.attr_team_name %></td>
+        <td><%= player.code.upcase %></td>
+        <td><%= player.g %></td>
+        <td><%= player.avg %></td>
+        <td><%= player.obp %></td>
+        <td><%= player.slg %></td>
+        <td><%= player.ops %></td>
+        <td><%= player.ab %></td>
+        <td><%= player.r %></td>
+        <td><%= player.h %></td>
+        <td><%= player.d %></td>
+        <td><%= player.t %></td>
+        <td><%= player.hr %></td>
+        <td><%= player.rbi %></td>
+        <td><%= player.bb %></td>
+        <td><%= player.so %></td>
+        <td><%= player.sb %></td>
       </tr>
     <% end %>
   </tbody>

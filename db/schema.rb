@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_22_152937) do
+ActiveRecord::Schema.define(version: 2021_05_01_060539) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -89,8 +89,64 @@ ActiveRecord::Schema.define(version: 2021_04_22_152937) do
     t.index ["player_type", "player_id"], name: "index_baseball_pitching_stats_on_player"
   end
 
+  create_table "baseball_positions", force: :cascade do |t|
+    t.string "code"
+    t.string "en_name"
+    t.string "tw_name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "cpbl_hitting_game_logs", force: :cascade do |t|
+    t.bigint "cpbl_player_id"
+    t.bigint "cpbl_schedule_id"
+    t.integer "ab"
+    t.integer "r"
+    t.integer "h"
+    t.integer "rbi"
+    t.integer "d"
+    t.integer "t"
+    t.integer "hr"
+    t.integer "gidp"
+    t.integer "bb"
+    t.integer "hbp"
+    t.integer "so"
+    t.integer "sac"
+    t.integer "sf"
+    t.integer "sb"
+    t.integer "cs"
+    t.integer "e"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["cpbl_player_id"], name: "index_cpbl_hitting_game_logs_on_cpbl_player_id"
+    t.index ["cpbl_schedule_id"], name: "index_cpbl_hitting_game_logs_on_cpbl_schedule_id"
+  end
+
+  create_table "cpbl_pitching_game_logs", force: :cascade do |t|
+    t.bigint "cpbl_player_id"
+    t.bigint "cpbl_schedule_id"
+    t.float "ip"
+    t.integer "bf"
+    t.integer "np"
+    t.integer "s"
+    t.integer "h"
+    t.integer "hr"
+    t.integer "bb"
+    t.integer "hbp"
+    t.integer "so"
+    t.integer "wp"
+    t.integer "bk"
+    t.integer "r"
+    t.integer "er"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["cpbl_player_id"], name: "index_cpbl_pitching_game_logs_on_cpbl_player_id"
+    t.index ["cpbl_schedule_id"], name: "index_cpbl_pitching_game_logs_on_cpbl_schedule_id"
+  end
+
   create_table "cpbl_players", force: :cascade do |t|
     t.string "cpbl_player_id", default: "", null: false
+    t.bigint "primary_position_id"
     t.integer "number", null: false
     t.string "name", default: "", null: false
     t.string "throws", default: "", null: false
@@ -99,6 +155,21 @@ ActiveRecord::Schema.define(version: 2021_04_22_152937) do
     t.string "primary_stat_type", default: "", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["primary_position_id"], name: "index_cpbl_players_on_primary_position_id"
+  end
+
+  create_table "cpbl_schedules", force: :cascade do |t|
+    t.bigint "home_team_id"
+    t.bigint "away_team_id"
+    t.string "location"
+    t.string "game_id"
+    t.string "home_score"
+    t.string "away_score"
+    t.string "match_date"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["away_team_id"], name: "index_cpbl_schedules_on_away_team_id"
+    t.index ["home_team_id"], name: "index_cpbl_schedules_on_home_team_id"
   end
 
   create_table "cpbl_team_players", force: :cascade do |t|
@@ -139,4 +210,7 @@ ActiveRecord::Schema.define(version: 2021_04_22_152937) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "cpbl_players", "baseball_positions", column: "primary_position_id"
+  add_foreign_key "cpbl_schedules", "cpbl_teams", column: "away_team_id"
+  add_foreign_key "cpbl_schedules", "cpbl_teams", column: "home_team_id"
 end

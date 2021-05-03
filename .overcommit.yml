@@ -2,7 +2,7 @@ PreCommit:
   AuthorName:
     enabled: false
   RuboCop:
-    enabled: true
+    enabled: false
     on_warn: fail # Treat all warnings as failures
   TrailingWhitespace:
     enabled: true

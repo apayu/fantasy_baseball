@@ -1,6 +1,13 @@
 Fantasy baseball
 ===
 
+## 執行順序
+
+`rake db:seed:baseball_position`
+`rake cpbl_team:update`
+`rake cpbl_team_roster:update`
+`rake cpbl_schedule:update`
+
 ## 系統需求
 
 * Ruby 2.6.6
