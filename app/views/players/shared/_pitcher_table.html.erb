@@ -1,49 +1,53 @@
-<table class="border-collapse border border-green-800">
+<table class="border-separate border border-black table-auto mx-auto text-center w-9/12">
   <thead>
     <tr>
-      <th class="border border-green-600 ">姓名</th>
-      <th class="border border-green-600 ">G</th>
-      <th class="border border-green-600 ">GS</th>
-      <th class="border border-green-600 ">W</th>
-      <th class="border border-green-600 ">L</th>
-      <th class="border border-green-600 ">SV</th>
-      <th class="border border-green-600 ">BS</th>
-      <th class="border border-green-600 ">HLD</th>
-      <th class="border border-green-600 ">CG</th>
-      <th class="border border-green-600 ">SHO</th>
-      <th class="border border-green-600 ">IP</th>
-      <th class="border border-green-600 ">H</th>
-      <th class="border border-green-600 ">R</th>
-      <th class="border border-green-600 ">ER</th>
-      <th class="border border-green-600 ">HR</th>
-      <th class="border border-green-600 ">BB</th>
-      <th class="border border-green-600 ">K</th>
-      <th class="border border-green-600 ">ERA</th>
-      <th class="border border-green-600 ">WHIP</th>
+      <th class="bg-blue-500 text-white">姓名</th>
+      <th class="bg-blue-500 text-white">隊伍</th>
+      <th class="bg-blue-500 text-white">位置</th>
+      <th class="bg-blue-500 text-white">G</th>
+      <th class="bg-blue-500 text-white">GS</th>
+      <th class="bg-blue-500 text-white">W</th>
+      <th class="bg-blue-500 text-white">L</th>
+      <th class="bg-blue-500 text-white">SV</th>
+      <th class="bg-blue-500 text-white">BS</th>
+      <th class="bg-blue-500 text-white">HLD</th>
+      <th class="bg-blue-500 text-white">CG</th>
+      <th class="bg-blue-500 text-white">SHO</th>
+      <th class="bg-blue-500 text-white">IP</th>
+      <th class="bg-blue-500 text-white">H</th>
+      <th class="bg-blue-500 text-white">R</th>
+      <th class="bg-blue-500 text-white">ER</th>
+      <th class="bg-blue-500 text-white">HR</th>
+      <th class="bg-blue-500 text-white">BB</th>
+      <th class="bg-blue-500 text-white">K</th>
+      <th class="bg-blue-500 text-white">ERA</th>
+      <th class="bg-blue-500 text-white">WHIP</th>
     </tr>
   </thead>
   <tbody>
-    <% cpbl_pitcher.each do |player| %>
-      <tr>
-        <td class="border border-green-600"><%= player.name %></td>
-        <td class="border border-green-600"><%= player.pitching_stat_g %></td>
-        <td class="border border-green-600"><%= player.pitching_stat_gs %></td>
-        <td class="border border-green-600"><%= player.pitching_stat_w %></td>
-        <td class="border border-green-600"><%= player.pitching_stat_l %></td>
-        <td class="border border-green-600"><%= player.pitching_stat_sv %></td>
-        <td class="border border-green-600"><%= player.pitching_stat_bs %></td>
-        <td class="border border-green-600"><%= player.pitching_stat_hld %></td>
-        <td class="border border-green-600"><%= player.pitching_stat_cg %></td>
-        <td class="border border-green-600"><%= player.pitching_stat_sho %></td>
-        <td class="border border-green-600"><%= player.pitching_stat_ip %></td>
-        <td class="border border-green-600"><%= player.pitching_stat_h %></td>
-        <td class="border border-green-600"><%= player.pitching_stat_r %></td>
-        <td class="border border-green-600"><%= player.pitching_stat_er %></td>
-        <td class="border border-green-600"><%= player.pitching_stat_hr %></td>
-        <td class="border border-green-600"><%= player.pitching_stat_bb %></td>
-        <td class="border border-green-600"><%= player.pitching_stat_so %></td>
-        <td class="border border-green-600"><%= player.pitching_stat_era %></td>
-        <td class="border border-green-600"><%= player.pitching_stat_whip %></td>
+    <% cpbl_pitcher.each_with_index do |player, index| %>
+      <tr class=<%= "#{index.even? ? 'bg-blue-100' : 'bg-blue-50'}" %>>
+        <td><%= player.name %></td>
+        <td><%= player.attr_team_name %></td>
+        <td><%= player.code.upcase %></td>
+        <td><%= player.g %></td>
+        <td ><%#= player.pitching_stat_gs %></td>
+        <td ><%#= player.pitching_stat_w %></td>
+        <td ><%#= player.pitching_stat_l %></td>
+        <td ><%#= player.pitching_stat_sv %></td>
+        <td ><%#= player.pitching_stat_bs %></td>
+        <td ><%#= player.pitching_stat_hld %></td>
+        <td ><%#= player.pitching_stat_cg %></td>
+        <td ><%#= player.pitching_stat_sho %></td>
+        <td ><%= player.ip %></td>
+        <td ><%= player.h %></td>
+        <td ><%= player.r %></td>
+        <td ><%= player.er %></td>
+        <td ><%= player.hr %></td>
+        <td ><%= player.bb %></td>
+        <td ><%= player.so %></td>
+        <td ><%#= player.pitching_stat_era %></td>
+        <td ><%#= player.pitching_stat_whip %></td>
       </tr>
     <% end %>
   </tbody>
