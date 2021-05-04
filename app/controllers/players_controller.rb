@@ -24,8 +24,22 @@ class PlayersController < ApplicationController
                      SUM(cpbl_hitting_game_logs.sb) AS sb
       SQL
     )
-    # @cpbl_hitter = CpblPlayer.includes(%i[cpbl_hitting_game_logs cpbl_teams]).where(primary_stat_type: 'batting')
-    # @cpbl_pitcher = CpblPlayer.includes(%i[baseball_pitching_stat cpbl_teams]).where(primary_stat_type: 'pitching')
+
+    @cpbl_pitcher = CpblPlayer.joins(%i[cpbl_pitching_game_logs cpbl_teams primary_position]).where(primary_stat_type: 'pitching').group('cpbl_players.id, cpbl_teams.tricode, baseball_positions.code').select(
+      <<-SQL.squish
+                     cpbl_players.*,
+                     cpbl_teams.tricode,
+                     baseball_positions.code,
+                     count(*) AS g,
+                     SUM(cpbl_pitching_game_logs.ip) AS ip,
+                     SUM(cpbl_pitching_game_logs.r) AS r,
+                     SUM(cpbl_pitching_game_logs.h) AS h,
+                     SUM(cpbl_pitching_game_logs.er) AS er,
+                     SUM(cpbl_pitching_game_logs.bb) AS bb,
+                     SUM(cpbl_pitching_game_logs.so) AS so,
+                     SUM(cpbl_pitching_game_logs.hr) AS hr
+      SQL
+    )
   end
 
   def show; end
