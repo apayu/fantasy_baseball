@@ -32,6 +32,7 @@ gem 'httparty'
 gem 'rails-i18n', '~> 6.0.0'
 gem 'seedbank'
 gem 'simple_form'
+gem 'ransack'
 
 # Active Record
 gem 'active_hash'
