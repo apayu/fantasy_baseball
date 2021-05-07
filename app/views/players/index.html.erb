@@ -1,2 +1,9 @@
+<%= form_with url: players_path, method: :get do |form| %>
+  <%= form.hidden_field :desc, value: params[:desc] %>
+  <%= form.hidden_field :order_by, value: params[:order_by] %>
+  <%= form.label :name, "名字:" %>
+  <%= form.text_field :name %>
+  <%= form.submit "搜尋" %>
+<% end %>
 <%= render 'players/shared/hitter_table', cpbl_hitter: @cpbl_hitter %>
 <%= render 'players/shared/pitcher_table', cpbl_pitcher: @cpbl_pitcher %>

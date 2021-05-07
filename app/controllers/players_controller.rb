@@ -4,8 +4,8 @@ class PlayersController < ApplicationController
   before_action :find_player, only: [:show]
 
   def index
-    @cpbl_hitter = CpblPlayerContext.new(params[:order_by], params[:desc], 'y').perform
-    @cpbl_pitcher = CpblPlayerContext.new(params[:order_by], params[:desc], 'n').perform
+    @cpbl_hitter = CpblPlayerContext.new(:hitter, params).perform
+    @cpbl_pitcher = CpblPlayerContext.new(:pitcher, params).perform
   end
 
   def show; end
