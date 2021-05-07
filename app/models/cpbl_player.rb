@@ -58,19 +58,25 @@ class CpblPlayer < ApplicationRecord
   end
 
   def avg
-    (h.to_f / ab).round(3)
+    result = (h.to_f / ab).round(3)
+
+    result.nan? ? 0.0 : result
   end
 
   def obp
-    (h + to_base).fdiv(ab + to_base + sf).round(3)
+    result = (h + to_base).fdiv(ab + to_base + sf).round(3)
+
+    result.nan? ? 0.0 : result
   end
 
   def slg
-    (tb.to_f / ab).round(3)
+    result = (tb.to_f / ab).round(3)
+
+    result.nan? ? 0.0 : result
   end
 
   def ops
-    (obp + slg).round(3)
+    (obp + slg).round(3) || 0
   end
 
   def tb
