@@ -26,7 +26,7 @@
     <% cpbl_pitcher.each_with_index do |player, index| %>
       <tr class=<%= "#{index.even? ? 'bg-blue-100' : 'bg-blue-50'}" %>>
         <td><%= index + 1 %></td>
-        <td><%= player.name %></td>
+        <td><%= link_to player.name, player_path(player.id) %></td>
         <td><%= player.attr_team_name %></td>
         <td><%= player.code.upcase %></td>
         <td><%= player.g %></td>
