@@ -11,12 +11,16 @@
 #  er               :integer
 #  h                :integer
 #  hbp              :integer
+#  hld              :integer
 #  hr               :integer
 #  ip               :float
+#  l                :integer
 #  np               :integer
 #  r                :integer
 #  s                :integer
 #  so               :integer
+#  sv               :integer
+#  w                :integer
 #  wp               :integer
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null

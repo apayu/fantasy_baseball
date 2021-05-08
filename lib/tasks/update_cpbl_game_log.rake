@@ -51,6 +51,10 @@ namespace :cpbl_game_log do
               game_log.bk = player[:bk]
               game_log.r = player[:r]
               game_log.er = player[:er]
+              game_log.w = player[:w]
+              game_log.l = player[:l]
+              game_log.hld = player[:hld]
+              game_log.sv = player[:sv]
             end
           end
         end

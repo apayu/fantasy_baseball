@@ -16,6 +16,13 @@ module Scraper
       game_log: '/games/box.html'
     }.freeze
 
+    PITCHER_STATS = [
+      { w: 'W' },
+      { l: 'L' },
+      { hld: 'H' },
+      { sv: 'S' }
+    ].freeze
+
     def teams
       team_list.map do |team|
         {
@@ -142,7 +149,9 @@ module Scraper
         th_p_stat_items.each_with_index.map do |item, index|
           if index == 0
             cpbl_player_id = params(stats[index].search('a').attr('href').value)["player_id"].first
-            { cpbl_player_id: cpbl_player_id }
+            PITCHER_STATS.map do |ss|
+              { ss.keys[0] => stats[index].text.include?(ss.values[0]) ? '1' : '0' }
+            end.reduce({}, :merge).merge({ cpbl_player_id: cpbl_player_id })
           else
             { item.text.downcase.to_sym => stats[index].text }
           end
@@ -154,7 +163,9 @@ module Scraper
         th_p_stat_items.each_with_index.map do |item, index|
           if index == 0
             cpbl_player_id = params(stats[index].search('a').attr('href').value)["player_id"].first
-            { cpbl_player_id: cpbl_player_id }
+            PITCHER_STATS.map do |ss|
+              { ss.keys[0] => stats[index].text.include?(ss.values[0]) ? '1' : '0' }
+            end.reduce({}, :merge).merge({ cpbl_player_id: cpbl_player_id })
           else
             { item.text.downcase.to_sym => stats[index].text }
           end

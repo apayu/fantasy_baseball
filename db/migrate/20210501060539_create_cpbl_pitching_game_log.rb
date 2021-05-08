@@ -7,6 +7,10 @@ class CreateCpblPitchingGameLog < ActiveRecord::Migration[6.1]
       t.references :cpbl_schedule
 
       t.float :ip
+      t.integer :w
+      t.integer :l
+      t.integer :sv
+      t.integer :hld
       t.integer :bf # Batter Faced
       t.integer :np # Number of Pitches
       t.integer :s # Strike
