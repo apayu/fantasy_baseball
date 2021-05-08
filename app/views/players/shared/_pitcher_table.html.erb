@@ -1,6 +1,7 @@
 <table class="border-separate border border-black table-auto mx-auto text-center w-9/12">
   <thead>
     <tr>
+      <th class="bg-blue-500 text-white"></th>
       <th class="bg-blue-500 text-white">姓名</th>
       <th class="bg-blue-500 text-white">隊伍</th>
       <th class="bg-blue-500 text-white">位置</th>
@@ -24,6 +25,7 @@
   <tbody>
     <% cpbl_pitcher.each_with_index do |player, index| %>
       <tr class=<%= "#{index.even? ? 'bg-blue-100' : 'bg-blue-50'}" %>>
+        <td><%= index + 1 %></td>
         <td><%= player.name %></td>
         <td><%= player.attr_team_name %></td>
         <td><%= player.code.upcase %></td>
