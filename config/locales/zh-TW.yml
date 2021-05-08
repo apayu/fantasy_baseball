@@ -1,7 +1,5 @@
 ---
 zh-TW:
   header:
-    players: '球員'
-    teams: '隊伍'
-    seasons: '球季'
-    leaders: '領先榜'
+    players: '球員列表'
+    teams: '隊伍列表'

@@ -1,20 +1,14 @@
-<nav class="bg-gray-800">
+<nav class="bg-gray-700">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between h-16">
       <div class="flex items-center">
         <div class="flex-shrink-0">
-          <%= link_to '台灣體育數據中心', root_path %>
+          <%= link_to 'TW Fantasy 世界棒球數據聯盟', root_path, class: 'text-white' %>
         </div>
         <div class="hidden md:block">
           <div class="ml-10 flex items-baseline space-x-4">
-            <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-            <a href="#" class="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium"><%= t('header.players') %></a>
-
-            <%= link_to t('header.teams'), teams_path, class: 'text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium' %>
-
-            <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"><%= t('header.seasons') %></a>
-
-            <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"><%= t('header.leaders') %></a>
+            <%= link_to t('header.players'), players_path, class: "text-white hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" %>
+            <%= link_to t('header.teams'), teams_path, class: 'text-white hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium' %>
           </div>
         </div>
       </div>
