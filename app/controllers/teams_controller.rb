@@ -3,7 +3,7 @@
 class TeamsController < ApplicationController
   before_action :find_team, only: :show
   def index
-    @cpbl_teams = CpblTeam.all
+    @cpbl_teams = CpblTeam.where(tricode: CpblTeam::ABBR_NAME.keys.map(&:to_s))
   end
 
   def show; end
