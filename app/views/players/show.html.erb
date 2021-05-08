@@ -1,5 +1,47 @@
-<% if @cpbl_player.first.primary_stat_type == 'batting' %>
-  <%= render 'players/shared/hitter_table', cpbl_hitter: @cpbl_player %>
-<% else %>
-  <%= render 'players/shared/pitcher_table', cpbl_pitcher: @cpbl_player %>
-<% end %>
+<div>
+  <%= @cpbl_player.name %>
+</div>
+<table class="border-separate border border-black table-auto mx-auto text-center w-9/12">
+  <thead>
+    <tr>
+      <th class="bg-blue-500 text-white">日期</th>
+      <th class="bg-blue-500 text-white">AB</th>
+      <th class="bg-blue-500 text-white">R</th>
+      <th class="bg-blue-500 text-white">H</th>
+      <th class="bg-blue-500 text-white">2B</th>
+      <th class="bg-blue-500 text-white">3B</th>
+      <th class="bg-blue-500 text-white">HR</th>
+      <th class="bg-blue-500 text-white">RBI</th>
+      <th class="bg-blue-500 text-white">BB</th>
+      <th class="bg-blue-500 text-white">K</th>
+      <th class="bg-blue-500 text-white">SB</th>
+      <th class="bg-blue-500 text-white">CS</th>
+      <th class="bg-blue-500 text-white">AVG</th>
+      <th class="bg-blue-500 text-white">OBP</th>
+      <th class="bg-blue-500 text-white">SLG</th>
+      <th class="bg-blue-500 text-white">OPS</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @cpbl_player.cpbl_hitting_game_logs.each_with_index do |game_log, index| %>
+      <tr class=<%= "#{index.even? ? 'bg-blue-100' : 'bg-blue-50'}" %>>
+        <td><%= game_log.match_date %></td>
+        <td><%= game_log.ab %></td>
+        <td><%= game_log.r %></td>
+        <td><%= game_log.h %></td>
+        <td><%= game_log.d %></td>
+        <td><%= game_log.t %></td>
+        <td><%= game_log.hr %></td>
+        <td><%= game_log.rbi %></td>
+        <td><%= game_log.bb %></td>
+        <td><%= game_log.so %></td>
+        <td><%= game_log.sb %></td>
+        <td><%= game_log.cs %></td>
+        <td><%= game_log.avg %></td>
+        <td><%= game_log.obp %></td>
+        <td><%= game_log.slg %></td>
+        <td><%= game_log.ops %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

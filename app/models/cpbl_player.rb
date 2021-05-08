@@ -52,7 +52,6 @@ class CpblPlayer < ApplicationRecord
     baseball_hitting_stat.nil?
   end
 
-
   def attr_team_name
     ABBR_NAME[tricode.to_sym]
   end
