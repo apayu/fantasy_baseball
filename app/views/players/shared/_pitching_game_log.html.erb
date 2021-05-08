@@ -1,0 +1,37 @@
+<table class="border-separate border border-black text-center w-full">
+  <thead>
+    <tr>
+      <th class="bg-blue-500 text-white">日期</th>
+      <th class="bg-blue-500 text-white">W</th>
+      <th class="bg-blue-500 text-white">L</th>
+      <th class="bg-blue-500 text-white">SV</th>
+      <th class="bg-blue-500 text-white">HLD</th>
+      <th class="bg-blue-500 text-white">IP</th>
+      <th class="bg-blue-500 text-white">H</th>
+      <th class="bg-blue-500 text-white">R</th>
+      <th class="bg-blue-500 text-white">ER</th>
+      <th class="bg-blue-500 text-white">BB</th>
+      <th class="bg-blue-500 text-white">K</th>
+      <th class="bg-blue-500 text-white">ERA</th>
+      <th class="bg-blue-500 text-white">WHIP</th>
+      <th class="bg-blue-500 text-white">BAA</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% player_game_logs.each_with_index do |game_log, index| %>
+      <tr class=<%= "#{index.even? ? 'bg-blue-100' : 'bg-blue-50'}" %>>
+        <td><%= game_log.match_date.to_date.strftime('%m/%d') %></td>
+        <td><%= game_log.w %></td>
+        <td><%= game_log.l %></td>
+        <td><%= game_log.hld %></td>
+        <td><%= game_log.sv %></td>
+        <td><%= game_log.ip %></td>
+        <td><%= game_log.h %></td>
+        <td><%= game_log.r %></td>
+        <td><%= game_log.er %></td>
+        <td><%= game_log.bb %></td>
+        <td><%= game_log.so %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

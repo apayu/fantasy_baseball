@@ -35,4 +35,6 @@
 class CpblPitchingGameLog < ApplicationRecord
   belongs_to :cpbl_player
   belongs_to :cpbl_schedule
+
+  delegate :match_date, to: :cpbl_schedule
 end
