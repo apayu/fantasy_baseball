@@ -9,10 +9,7 @@
       <th class="bg-blue-500 text-white">W</th>
       <th class="bg-blue-500 text-white">L</th>
       <th class="bg-blue-500 text-white">SV</th>
-      <th class="bg-blue-500 text-white">BS</th>
       <th class="bg-blue-500 text-white">HLD</th>
-      <th class="bg-blue-500 text-white">CG</th>
-      <th class="bg-blue-500 text-white">SHO</th>
       <th class="bg-blue-500 text-white">IP</th>
       <th class="bg-blue-500 text-white">H</th>
       <th class="bg-blue-500 text-white">R</th>
@@ -31,14 +28,11 @@
         <td><%= player.attr_team_name %></td>
         <td><%= player.code.upcase %></td>
         <td><%= player.g %></td>
-        <td ><%#= player.pitching_stat_gs %></td>
-        <td ><%#= player.pitching_stat_w %></td>
-        <td ><%#= player.pitching_stat_l %></td>
-        <td ><%#= player.pitching_stat_sv %></td>
-        <td ><%#= player.pitching_stat_bs %></td>
-        <td ><%#= player.pitching_stat_hld %></td>
-        <td ><%#= player.pitching_stat_cg %></td>
-        <td ><%#= player.pitching_stat_sho %></td>
+        <td >0</td>
+        <td ><%= player.w %></td>
+        <td ><%= player.l %></td>
+        <td ><%= player.sv %></td>
+        <td ><%= player.hld %></td>
         <td ><%= player.ip %></td>
         <td ><%= player.h %></td>
         <td ><%= player.r %></td>
