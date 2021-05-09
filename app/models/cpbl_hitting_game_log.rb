@@ -66,6 +66,4 @@ class CpblHittingGameLog < ApplicationRecord
   def to_base
     bb + hbp
   end
-
-
 end

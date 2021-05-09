@@ -2,10 +2,34 @@
   <%= @cpbl_player.name %>
 </div>
 <div>
-  Game Log
+  2021
 </div>
 <% if @cpbl_player.pitcher? %>
-  <%= render 'players/shared/pitching_game_log', cpbl_player: @cpbl_player, player_game_logs: @player_game_logs %>
+  <%= render 'players/shared/recently_pitching_game_log', player_game_logs: @player_session_game_logs %>
 <% else %>
-  <%= render 'players/shared/hitting_game_log', cpbl_player: @cpbl_player, player_game_logs: @player_game_logs %>
+  <%= render 'players/shared/recently_hitting_game_log', player_game_logs: @player_session_game_logs %>
+<% end %>
+<div>
+  最近 7 場
+</div>
+<% if @cpbl_player.pitcher? %>
+  <%= render 'players/shared/recently_pitching_game_log', player_game_logs: @player_last_7_game_logs %>
+<% else %>
+  <%= render 'players/shared/recently_hitting_game_log', player_game_logs: @player_last_7_game_logs %>
+<% end %>
+<div>
+  最近 14 場
+</div>
+<% if @cpbl_player.pitcher? %>
+  <%= render 'players/shared/recently_pitching_game_log', player_game_logs: @player_last_14_game_logs %>
+<% else %>
+  <%= render 'players/shared/recently_hitting_game_log', player_game_logs: @player_last_14_game_logs %>
+<% end %>
+<div>
+  逐場表現
+</div>
+<% if @cpbl_player.pitcher? %>
+  <%= render 'players/shared/pitching_game_log', player_game_logs: @player_game_logs %>
+<% else %>
+  <%= render 'players/shared/hitting_game_log', player_game_logs: @player_game_logs %>
 <% end %>
