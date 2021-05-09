@@ -38,7 +38,8 @@ namespace :cpbl_game_log do
             p = CpblPlayer.find_by(cpbl_player_id: player[:cpbl_player_id])
 
             CpblPitchingGameLog.find_or_create_by(cpbl_schedule: match, cpbl_player: p) do |game_log|
-              game_log.ip = player[:ip]
+              game_log.ip = player[:ip].split('.')[0]
+              game_log.ipf = player[:ip].split('.')[1]
               game_log.bf = player[:bf]
               game_log.np = player[:np]
               game_log.s = player[:s]

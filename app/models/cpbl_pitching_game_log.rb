@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 class CpblPitchingGameLog < ApplicationRecord
+
+  include PitchingStandardStats
+
   belongs_to :cpbl_player
   belongs_to :cpbl_schedule
 

@@ -4,18 +4,26 @@ module PitchingStandardStats
   extend ActiveSupport::Concern
 
   def era
-    ((er * 9) / real_ip).round(2)
+    return 0.00 if er.zero?
+
+    begin
+      ((er * 9) / real_ip).round(2)
+    rescue ZeroDivisionError
+      'INF'
+    end
   end
 
   def whip
-    ((h + bb) / real_ip).round(2)
-  end
+    return 0.00 if (h + bb).zero?
 
-  def baa
-    (h / ab).round(2)
+    begin
+      ((h + bb) / real_ip).round(2)
+    rescue ZeroDivisionError
+      'INF'
+    end
   end
 
   def real_ip
-    ip.to_i + ((ip % 1).round(1) * 10) / 3
+    ((ip * 3 + ipf.to_f) / 3).round(2)
   end
 end
