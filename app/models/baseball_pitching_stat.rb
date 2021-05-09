@@ -1,4 +1,23 @@
 # frozen_string_literal: true
+class BaseballPitchingStat < ApplicationRecord
+  belongs_to :player, polymorphic: true
+
+  def era
+    ((er * 9) / real_ip).round(2)
+  end
+
+  def whip
+    ((h + bb) / real_ip).round(2)
+  end
+
+  def baa
+    (h / ab).round(2)
+  end
+
+  def real_ip
+    ip.to_i + ((ip % 1).round(1) * 10) / 3
+  end
+end
 
 # == Schema Information
 #
@@ -46,22 +65,3 @@
 #  index_baseball_pitching_stats_on_player              (player_type,player_id)
 #  index_baseball_pitching_stats_on_player_id_and_year  (player_id,year)
 #
-class BaseballPitchingStat < ApplicationRecord
-  belongs_to :player, polymorphic: true
-
-  def era
-    ((er * 9) / real_ip).round(2)
-  end
-
-  def whip
-    ((h + bb) / real_ip).round(2)
-  end
-
-  def baa
-    (h / ab).round(2)
-  end
-
-  def real_ip
-    ip.to_i + ((ip % 1).round(1) * 10) / 3
-  end
-end

@@ -1,4 +1,10 @@
 # frozen_string_literal: true
+class CpblSchedule < ApplicationRecord
+  belongs_to :home_team, class_name: 'CpblTeam'
+  belongs_to :away_team, class_name: 'CpblTeam'
+  has_many :cpbl_hitting_game_logs, dependent: :restrict_with_error
+  has_many :cpbl_pitching_game_logs, dependent: :restrict_with_error
+end
 
 # == Schema Information
 #
@@ -25,9 +31,3 @@
 #  fk_rails_...  (away_team_id => cpbl_teams.id)
 #  fk_rails_...  (home_team_id => cpbl_teams.id)
 #
-class CpblSchedule < ApplicationRecord
-  belongs_to :home_team, class_name: 'CpblTeam'
-  belongs_to :away_team, class_name: 'CpblTeam'
-  has_many :cpbl_hitting_game_logs, dependent: :restrict_with_error
-  has_many :cpbl_pitching_game_logs, dependent: :restrict_with_error
-end

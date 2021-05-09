@@ -1,4 +1,6 @@
 # frozen_string_literal: true
+class MlbTeam < ApplicationRecord
+end
 
 # == Schema Information
 #
@@ -13,5 +15,3 @@
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #
-class MlbTeam < ApplicationRecord
-end

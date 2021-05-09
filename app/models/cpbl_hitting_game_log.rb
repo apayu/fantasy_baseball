@@ -1,4 +1,13 @@
 # frozen_string_literal: true
+class CpblHittingGameLog < ApplicationRecord
+
+  include HittingStandardStats
+
+  belongs_to :cpbl_player
+  belongs_to :cpbl_schedule
+
+  delegate :match_date, to: :cpbl_schedule
+end
 
 # == Schema Information
 #
@@ -31,12 +40,3 @@
 #  index_cpbl_hitting_game_logs_on_cpbl_player_id    (cpbl_player_id)
 #  index_cpbl_hitting_game_logs_on_cpbl_schedule_id  (cpbl_schedule_id)
 #
-class CpblHittingGameLog < ApplicationRecord
-
-  include HittingStandardStats
-
-  belongs_to :cpbl_player
-  belongs_to :cpbl_schedule
-
-  delegate :match_date, to: :cpbl_schedule
-end

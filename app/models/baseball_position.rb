@@ -1,4 +1,7 @@
 # frozen_string_literal: true
+class BaseballPosition < ApplicationRecord
+  has_many :cpbl_players, dependent: :restrict_with_error
+end
 
 # == Schema Information
 #
@@ -11,6 +14,3 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
-class BaseballPosition < ApplicationRecord
-  has_many :cpbl_players, dependent: :restrict_with_error
-end
