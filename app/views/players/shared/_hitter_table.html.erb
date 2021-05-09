@@ -5,21 +5,21 @@
       <th class="bg-blue-500 text-white">姓名</th>
       <th class="bg-blue-500 text-white">隊伍</th>
       <th class="bg-blue-500 text-white">位置</th>
-      <th class="bg-blue-500 text-white">G</th>
-      <th class="bg-blue-500 text-white">AVG</th>
-      <th class="bg-blue-500 text-white"><%= link_to 'OBP', players_path(order_by: 'obp', desc: params['desc'] == 'y' ? 'n' : 'y') %></th>
-      <th class="bg-blue-500 text-white"><%= link_to 'SLG', players_path(order_by: 'slg', desc: params['desc'] == 'y' ? 'n' : 'y') %></th>
-      <th class="bg-blue-500 text-white"><%= link_to 'OPS', players_path(order_by: 'ops', desc: params['desc'] == 'y' ? 'n' : 'y') %></th>
-      <th class="bg-blue-500 text-white"><%= link_to 'AB', players_path(order_by: 'ab', desc: params['desc'] == 'y' ? 'n' : 'y') %></th>
-      <th class="bg-blue-500 text-white"><%= link_to 'R', players_path(order_by: 'r', desc: params['desc'] == 'y' ? 'n' : 'y') %></th>
-      <th class="bg-blue-500 text-white"><%= link_to 'H', players_path(order_by: 'h', desc: params['desc'] == 'y' ? 'n' : 'y') %></th>
-      <th class="bg-blue-500 text-white"><%= link_to '2B', players_path(order_by: 'd', desc: params['desc'] == 'y' ? 'n' : 'y') %></th>
-      <th class="bg-blue-500 text-white"><%= link_to '3B', players_path(order_by: 't', desc: params['desc'] == 'y' ? 'n' : 'y') %></th>
-      <th class="bg-blue-500 text-white"><%= link_to 'HR', players_path(order_by: 'hr', desc: params['desc'] == 'y' ? 'n' : 'y') %></th>
-      <th class="bg-blue-500 text-white"><%= link_to 'RBI', players_path(order_by: 'rbi', desc: params['desc'] == 'y' ? 'n' : 'y') %></th>
-      <th class="bg-blue-500 text-white"><%= link_to 'BB', players_path(order_by: 'bb', desc: params['desc'] == 'y' ? 'n' : 'y') %></th>
-      <th class="bg-blue-500 text-white"><%= link_to 'K', players_path(order_by: 'so', desc: params['desc'] == 'y' ? 'n' : 'y') %></th>
-      <th class="bg-blue-500 text-white"><%= link_to 'SB', players_path(order_by: 'sb', desc: params['desc'] == 'y' ? 'n' : 'y') %></th>
+      <th class="bg-blue-500 text-white"><%= link_to 'G', players_path(search_params('g')) %></th>
+      <th class="bg-blue-500 text-white"><%= link_to 'AVG', players_path(search_params('avg')) %></th>
+      <th class="bg-blue-500 text-white"><%= link_to 'OBP', players_path(search_params('obp')) %></th>
+      <th class="bg-blue-500 text-white"><%= link_to 'SLG', players_path(search_params('slg')) %></th>
+      <th class="bg-blue-500 text-white"><%= link_to 'OPS', players_path(search_params('ops')) %></th>
+      <th class="bg-blue-500 text-white"><%= link_to 'AB', players_path(search_params('ab')) %></th>
+      <th class="bg-blue-500 text-white"><%= link_to 'R', players_path(search_params('r')) %></th>
+      <th class="bg-blue-500 text-white"><%= link_to 'H', players_path(search_params('h')) %></th>
+      <th class="bg-blue-500 text-white"><%= link_to '2B', players_path(search_params('d')) %></th>
+      <th class="bg-blue-500 text-white"><%= link_to '3B', players_path(search_params('t')) %></th>
+      <th class="bg-blue-500 text-white"><%= link_to 'HR', players_path(search_params('hr')) %></th>
+      <th class="bg-blue-500 text-white"><%= link_to 'RBI', players_path(search_params('rbi')) %></th>
+      <th class="bg-blue-500 text-white"><%= link_to 'BB', players_path(search_params('bb')) %></th>
+      <th class="bg-blue-500 text-white"><%= link_to 'K', players_path(search_params('so')) %></th>
+      <th class="bg-blue-500 text-white"><%= link_to 'SB', players_path(search_params('sb')) %></th>
     </tr>
   </thead>
   <tbody>

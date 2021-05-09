@@ -1,6 +1,4 @@
 <%= form_with url: players_path, method: :get do |form| %>
-  <%= form.hidden_field :desc, value: params[:desc] %>
-  <%= form.hidden_field :order_by, value: params[:order_by] %>
   <%= form.label :name, "名字:" %>
   <%= form.text_field :name %>
   <%= form.collection_select :position_id, BaseballPosition.all, :id, :tw_name, { selected: params[:position_id].blank? ? 1 : params[:position_id] }  %>

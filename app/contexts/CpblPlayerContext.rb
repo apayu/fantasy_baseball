@@ -2,17 +2,17 @@
 
 class CpblPlayerContext
   def initialize(params)
-    @order_by = params['order_by']
-    @desc = params['desc']
     @name = params['name']
     @position_id = params['position_id'].blank? ? '1' : params['position_id']
+    @order_by = params['order_by']
+    @desc = params['desc'].blank? ? 'y' : params['desc']
     @relation = CpblPlayer
   end
 
   def perform
     search_by_name
     scope_by_default
-    # order_by_params
+    order_by_params
   end
 
   private
@@ -32,7 +32,7 @@ class CpblPlayerContext
   end
 
   def order_by_params
-    return @relation if @order_by.blank? || @position != :hitter
+    return @relation if @order_by.blank?
 
     if @desc == 'n'
       @relation = @relation.sort_by { |player| player.send(@order_by.to_sym) }

@@ -5,21 +5,21 @@
       <th class="bg-blue-500 text-white">姓名</th>
       <th class="bg-blue-500 text-white">隊伍</th>
       <th class="bg-blue-500 text-white">位置</th>
-      <th class="bg-blue-500 text-white">G</th>
+      <th class="bg-blue-500 text-white"><%= link_to 'G', players_path(search_params('g')) %></th>
       <th class="bg-blue-500 text-white">GS</th>
-      <th class="bg-blue-500 text-white">W</th>
-      <th class="bg-blue-500 text-white">L</th>
-      <th class="bg-blue-500 text-white">SV</th>
-      <th class="bg-blue-500 text-white">HLD</th>
-      <th class="bg-blue-500 text-white">IP</th>
-      <th class="bg-blue-500 text-white">H</th>
-      <th class="bg-blue-500 text-white">R</th>
-      <th class="bg-blue-500 text-white">ER</th>
-      <th class="bg-blue-500 text-white">HR</th>
-      <th class="bg-blue-500 text-white">BB</th>
-      <th class="bg-blue-500 text-white">K</th>
-      <th class="bg-blue-500 text-white">ERA</th>
-      <th class="bg-blue-500 text-white">WHIP</th>
+      <th class="bg-blue-500 text-white"><%= link_to 'W', players_path(search_params('w')) %></th>
+      <th class="bg-blue-500 text-white"><%= link_to 'L', players_path(search_params('l')) %></th>
+      <th class="bg-blue-500 text-white"><%= link_to 'SV', players_path(search_params('sv')) %></th>
+      <th class="bg-blue-500 text-white"><%= link_to 'HLD', players_path(search_params('hld')) %></th>
+      <th class="bg-blue-500 text-white"><%= link_to 'IP', players_path(search_params('ip')) %></th>
+      <th class="bg-blue-500 text-white"><%= link_to 'H', players_path(search_params('h')) %></th>
+      <th class="bg-blue-500 text-white"><%= link_to 'R', players_path(search_params('r')) %></th>
+      <th class="bg-blue-500 text-white"><%= link_to 'ER', players_path(search_params('r')) %></th>
+      <th class="bg-blue-500 text-white"><%= link_to 'HR', players_path(search_params('hr')) %></th>
+      <th class="bg-blue-500 text-white"><%= link_to 'BB', players_path(search_params('bb')) %></th>
+      <th class="bg-blue-500 text-white"><%= link_to 'K', players_path(search_params('so')) %></th>
+      <th class="bg-blue-500 text-white"><%= link_to 'ERA', players_path(search_params('era')) %></th>
+      <th class="bg-blue-500 text-white"><%= link_to 'WHIP', players_path(search_params('whip')) %></th>
     </tr>
   </thead>
   <tbody>
