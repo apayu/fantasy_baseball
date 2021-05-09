@@ -4,8 +4,7 @@ class PlayersController < ApplicationController
   before_action :find_player, only: [:show]
 
   def index
-    @cpbl_hitter = CpblPlayerContext.new(:hitter, params).perform
-    @cpbl_pitcher = CpblPlayerContext.new(:pitcher, params).perform
+    @cpbl_player = CpblPlayerContext.new(params).perform
   end
 
   def show
