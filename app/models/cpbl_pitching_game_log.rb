@@ -1,4 +1,13 @@
 # frozen_string_literal: true
+class CpblPitchingGameLog < ApplicationRecord
+
+  include PitchingStandardStats
+
+  belongs_to :cpbl_player
+  belongs_to :cpbl_schedule
+
+  delegate :match_date, to: :cpbl_schedule
+end
 
 # == Schema Information
 #
@@ -13,7 +22,8 @@
 #  hbp              :integer
 #  hld              :integer
 #  hr               :integer
-#  ip               :float
+#  ip               :integer
+#  ipf              :integer
 #  l                :integer
 #  np               :integer
 #  r                :integer
@@ -32,9 +42,3 @@
 #  index_cpbl_pitching_game_logs_on_cpbl_player_id    (cpbl_player_id)
 #  index_cpbl_pitching_game_logs_on_cpbl_schedule_id  (cpbl_schedule_id)
 #
-class CpblPitchingGameLog < ApplicationRecord
-  belongs_to :cpbl_player
-  belongs_to :cpbl_schedule
-
-  delegate :match_date, to: :cpbl_schedule
-end

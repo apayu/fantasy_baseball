@@ -77,6 +77,7 @@ class CpblPlayerContext
       baseball_positions.code,
       count(*) AS g,
       SUM(cpbl_pitching_game_logs.ip) AS ip,
+      SUM(cpbl_pitching_game_logs.ipf) AS ipf,
       SUM(cpbl_pitching_game_logs.w) AS w,
       SUM(cpbl_pitching_game_logs.l) AS l,
       SUM(cpbl_pitching_game_logs.sv) AS sv,

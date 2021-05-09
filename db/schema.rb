@@ -53,7 +53,8 @@ ActiveRecord::Schema.define(version: 2021_05_01_060539) do
   create_table "baseball_pitching_stats", force: :cascade do |t|
     t.integer "year", null: false
     t.integer "g"
-    t.float "ip"
+    t.integer "ip"
+    t.integer "ipf"
     t.integer "gs"
     t.integer "gr"
     t.integer "cg"
@@ -125,7 +126,8 @@ ActiveRecord::Schema.define(version: 2021_05_01_060539) do
   create_table "cpbl_pitching_game_logs", force: :cascade do |t|
     t.bigint "cpbl_player_id"
     t.bigint "cpbl_schedule_id"
-    t.float "ip"
+    t.integer "ip"
+    t.integer "ipf"
     t.integer "w"
     t.integer "l"
     t.integer "sv"

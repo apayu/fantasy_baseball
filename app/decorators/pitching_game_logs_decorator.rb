@@ -25,6 +25,10 @@ class PitchingGameLogsDecorator
     @game_logs.sum(&:ip)
   end
 
+  def ipf
+    @game_logs.sum(&:ipf)
+  end
+
   def h
     @game_logs.sum(&:h)
   end
@@ -44,4 +48,33 @@ class PitchingGameLogsDecorator
   def so
     @game_logs.sum(&:so)
   end
+
+  def era
+    return 0.00 if er.zero?
+
+    begin
+      ((er * 9) / real_ip).round(2)
+    rescue ZeroDivisionError
+      'INF'
+    end
+  end
+
+  def whip
+    return 0.00 if (h + bb).zero?
+
+    begin
+      ((h + bb) / real_ip).round(2)
+    rescue ZeroDivisionError
+      'INF'
+    end
+  end
+
+  def baa
+    (h / ab).round(2)
+  end
+
+  def real_ip
+    ((ip * 3 + ipf.to_f) / 3).round(2)
+  end
 end
+

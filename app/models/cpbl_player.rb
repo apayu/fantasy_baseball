@@ -1,29 +1,4 @@
 # frozen_string_literal: true
-
-# == Schema Information
-#
-# Table name: cpbl_players
-#
-#  id                  :bigint           not null, primary key
-#  bats                :string           default(""), not null
-#  name                :string           default(""), not null
-#  number              :integer          not null
-#  primary_stat_type   :string           default(""), not null
-#  status              :integer          default("not_active"), not null
-#  throws              :string           default(""), not null
-#  created_at          :datetime         not null
-#  updated_at          :datetime         not null
-#  cpbl_player_id      :string           default(""), not null
-#  primary_position_id :bigint
-#
-# Indexes
-#
-#  index_cpbl_players_on_primary_position_id  (primary_position_id)
-#
-# Foreign Keys
-#
-#  fk_rails_...  (primary_position_id => baseball_positions.id)
-#
 class CpblPlayer < ApplicationRecord
   include Player
   include HittingStandardStats
@@ -53,3 +28,28 @@ class CpblPlayer < ApplicationRecord
     ABBR_NAME[tricode.to_sym]
   end
 end
+
+# == Schema Information
+#
+# Table name: cpbl_players
+#
+#  id                  :bigint           not null, primary key
+#  bats                :string           default(""), not null
+#  name                :string           default(""), not null
+#  number              :integer          not null
+#  primary_stat_type   :string           default(""), not null
+#  status              :integer          default("not_active"), not null
+#  throws              :string           default(""), not null
+#  created_at          :datetime         not null
+#  updated_at          :datetime         not null
+#  cpbl_player_id      :string           default(""), not null
+#  primary_position_id :bigint
+#
+# Indexes
+#
+#  index_cpbl_players_on_primary_position_id  (primary_position_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (primary_position_id => baseball_positions.id)
+#

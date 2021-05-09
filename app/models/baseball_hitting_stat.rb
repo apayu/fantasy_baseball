@@ -1,4 +1,27 @@
 # frozen_string_literal: true
+class BaseballHittingStat < ApplicationRecord
+  belongs_to :player, polymorphic: true
+
+  def avg
+    (h.to_f / ab).round(3)
+  end
+
+  def obp
+    (h + to_base).fdiv(ab + to_base + sf).round(3)
+  end
+
+  def slg
+    (tb.to_f / ab).round(3)
+  end
+
+  def ops
+    (obp + slg).round(3)
+  end
+
+  def to_base
+    bb + hbp
+  end
+end
 
 # == Schema Information
 #
@@ -41,26 +64,3 @@
 #  index_baseball_hitting_stats_on_player              (player_type,player_id)
 #  index_baseball_hitting_stats_on_player_id_and_year  (player_id,year)
 #
-class BaseballHittingStat < ApplicationRecord
-  belongs_to :player, polymorphic: true
-
-  def avg
-    (h.to_f / ab).round(3)
-  end
-
-  def obp
-    (h + to_base).fdiv(ab + to_base + sf).round(3)
-  end
-
-  def slg
-    (tb.to_f / ab).round(3)
-  end
-
-  def ops
-    (obp + slg).round(3)
-  end
-
-  def to_base
-    bb + hbp
-  end
-end

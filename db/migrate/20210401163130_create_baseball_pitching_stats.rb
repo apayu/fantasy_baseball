@@ -5,7 +5,8 @@ class CreateBaseballPitchingStats < ActiveRecord::Migration[6.1]
     create_table :baseball_pitching_stats do |t|
       t.integer :year, null: false
       t.integer :g
-      t.float :ip
+      t.integer :ip # innings pitched
+      t.integer :ipf # fractional number of innings pitched
       t.integer :gs
       t.integer :gr # game rescue
       t.integer :cg # complete game

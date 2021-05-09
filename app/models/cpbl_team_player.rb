@@ -1,4 +1,8 @@
 # frozen_string_literal: true
+class CpblTeamPlayer < ApplicationRecord
+  belongs_to :cpbl_player
+  belongs_to :cpbl_team
+end
 
 # == Schema Information
 #
@@ -15,7 +19,3 @@
 #  index_cpbl_team_players_on_cpbl_player_id  (cpbl_player_id)
 #  index_cpbl_team_players_on_cpbl_team_id    (cpbl_team_id)
 #
-class CpblTeamPlayer < ApplicationRecord
-  belongs_to :cpbl_player
-  belongs_to :cpbl_team
-end

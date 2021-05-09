@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+class MlbPlayer < ApplicationRecord; end
 
 # == Schema Information
 #
@@ -14,4 +15,3 @@
 #  updated_at              :datetime         not null
 #  mlb_data_player_id      :string           default(""), not null
 #
-class MlbPlayer < ApplicationRecord; end
