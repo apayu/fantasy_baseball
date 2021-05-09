@@ -55,7 +55,7 @@ class HittingGameLogsDecorator
   end
 
   def sf
-   0
+    @game_logs.sum(&:sf)
   end
 
   def avg
