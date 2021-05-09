@@ -23,7 +23,8 @@
 #  hld         :integer
 #  hr          :integer
 #  ibb         :integer
-#  ip          :float
+#  ip          :integer
+#  ipf         :integer
 #  l           :integer
 #  nbb         :integer
 #  np          :integer

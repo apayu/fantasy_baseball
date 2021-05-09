@@ -6,7 +6,8 @@ class CreateCpblPitchingGameLog < ActiveRecord::Migration[6.1]
       t.references :cpbl_player
       t.references :cpbl_schedule
 
-      t.float :ip
+      t.integer :ip # innings pitched
+      t.integer :ipf # fractional number of innings pitched
       t.integer :w
       t.integer :l
       t.integer :sv
