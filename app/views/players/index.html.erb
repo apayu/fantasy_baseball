@@ -3,7 +3,11 @@
   <%= form.hidden_field :order_by, value: params[:order_by] %>
   <%= form.label :name, "名字:" %>
   <%= form.text_field :name %>
+  <%= form.collection_select :position_id, BaseballPosition.all, :id, :tw_name, { selected: params[:position_id].blank? ? 1 : params[:position_id] }  %>
   <%= form.submit "搜尋" %>
 <% end %>
-<%= render 'players/shared/hitter_table', cpbl_hitter: @cpbl_hitter %>
-<%= render 'players/shared/pitcher_table', cpbl_pitcher: @cpbl_pitcher %>
+<% if @cpbl_player.first.pitcher? %>
+  <%= render 'players/shared/pitcher_table', cpbl_pitcher: @cpbl_player %>
+<% else %>
+  <%= render 'players/shared/hitter_table', cpbl_hitter: @cpbl_player %>
+<% end %>

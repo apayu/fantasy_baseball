@@ -1,6 +1,14 @@
 # frozen_string_literal: true
 class BaseballPosition < ApplicationRecord
   has_many :cpbl_players, dependent: :restrict_with_error
+
+  def self.pitcher?(position_id)
+    position_id.to_i == 1
+  end
+
+  def self.hitter?(position_id)
+    position_id.to_i != 1
+  end
 end
 
 # == Schema Information

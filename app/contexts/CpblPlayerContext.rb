@@ -1,18 +1,18 @@
 # frozen_string_literal: true
 
 class CpblPlayerContext
-  def initialize(position, params)
+  def initialize(params)
     @order_by = params['order_by']
     @desc = params['desc']
     @name = params['name']
+    @position_id = params['position_id'].blank? ? '1' : params['position_id']
     @relation = CpblPlayer
-    @position = position
   end
 
   def perform
     search_by_name
     scope_by_default
-    order_by_params
+    # order_by_params
   end
 
   private
@@ -26,9 +26,9 @@ class CpblPlayerContext
   def scope_by_default
     @relation = @relation.
                  joins(join_table).
-                 where(primary_stat_type: @position == :hitter ? 'batting' : 'pitching').
+                 where(primary_position_id: @position_id.to_i).
                  group('cpbl_players.id, cpbl_teams.tricode, baseball_positions.code').
-                 select(@position == :hitter ? scope_by_hitter : scope_by_pitcher)
+                 select(BaseballPosition.hitter?(@position_id) ? scope_by_hitter : scope_by_pitcher)
   end
 
   def order_by_params
@@ -42,7 +42,7 @@ class CpblPlayerContext
   end
 
   def join_table
-    if @position == :hitter
+    if BaseballPosition.hitter?(@position_id)
       %i[cpbl_hitting_game_logs cpbl_teams primary_position]
     else
       %i[cpbl_pitching_game_logs cpbl_teams primary_position]
